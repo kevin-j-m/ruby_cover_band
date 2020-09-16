@@ -1,4 +1,5 @@
 require "bundler/setup"
+require "pry"
 require "ruby_cover_band"
 
 RSpec.configure do |config|
