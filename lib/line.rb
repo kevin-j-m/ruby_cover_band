@@ -263,8 +263,3 @@ class Drum
   def hit(percussion_loop)
   end
 end
-
-class Synthesizer
-  def program(synth_sound)
-  end
-end
