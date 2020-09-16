@@ -183,11 +183,12 @@ class GuitarChord
 end
 
 class GuitarString
-  USABLE_PLAYS = 100
+  attr_reader :tuning_note
 
   def initialize(tuning_note)
     @tuning_note = tuning_note
-    @uses = 0
+    @tension = 100
+    @broken = false
   end
 
   def tune(note)
@@ -195,66 +196,39 @@ class GuitarString
   end
 
   def pluck(fret:)
-    return unless fret
+    return unless fret && playable?
 
-    if stressed?
+    if exhausted?
       break_string
     else
-      @uses += 1
+      @tension -= 1
       play_note(fret)
     end
   end
 
-  private
-
-  def stressed?
-    (@uses > USABLE_PLAYS) || (rand(1..5) == 3)
+  def broken?
+    @broken
   end
 
-  def play_note(fret)
-    note(fret)
+  private
+
+  def exhausted?
+    (@tension.positive?) || (rand(1..5) == 3)
+  end
+
+  def playable?
+    !@broken
+  end
+
+  def play_note(fret_number)
+    fret = Fret.new(number: fret_number, string_tuning: tuning_note)
+
+    fret.note
     # TODO: sonic pi stuff
   end
 
-  # TODO: move this to a separate class?
-  def note(fret)
-    note_progression
-      .cycle
-      .find
-      .with_index { |_, i| i == fret }
-  end
-
-  def note_progression
-    start_index = notes.index(@tuning_note)
-    notes.rotate(start_index)
-
-    # if start_index == 0
-    #   notes
-    # else
-    #   # TODO: rotate?
-    #   notes[start_index..] + notes[0...start_index]
-    # end
-  end
-
-  def notes
-    [
-      :c,
-      :d_flat,
-      :d,
-      :e_flat,
-      :e,
-      :f,
-      :g_flat,
-      :g,
-      :a_flat,
-      :a,
-      :b_flat,
-      :b,
-    ]
-  end
-end
-
-class Vocal
-  def sing(lyric_line)
+  def break_string
+    @broken = true
+    # TODO: sonic pi stuff
   end
 end
