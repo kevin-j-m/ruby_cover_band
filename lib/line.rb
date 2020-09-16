@@ -268,8 +268,3 @@ class Synthesizer
   def program(synth_sound)
   end
 end
-
-class Band
-  attr_accessor :guitarist, :singer, :drummer, :keyboardist
-end
-
