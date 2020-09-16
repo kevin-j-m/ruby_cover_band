@@ -258,8 +258,3 @@ class Vocal
   def sing(lyric_line)
   end
 end
-
-class Drum
-  def hit(percussion_loop)
-  end
-end
