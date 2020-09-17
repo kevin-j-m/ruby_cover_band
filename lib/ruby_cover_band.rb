@@ -1,5 +1,6 @@
 require "ruby_cover_band/band"
 require "ruby_cover_band/beat"
+require "ruby_cover_band/concert"
 require "ruby_cover_band/instruments/drum"
 require "ruby_cover_band/instruments/guitar"
 require "ruby_cover_band/instruments/guitar/chord"
