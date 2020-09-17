@@ -2,6 +2,9 @@ module RubyCoverBand
   module Instruments
     class Guitar
       class Chord
+        # TODO: change to different classes for each chord
+        attr_reader :note
+
         def initialize(note)
           @note = note
         end

@@ -49,6 +49,7 @@ module RubyCoverBand
 
         def break_string
           @broken = true
+          :broken
           # TODO: sonic pi stuff
         end
       end
