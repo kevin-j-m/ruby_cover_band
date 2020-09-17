@@ -15,7 +15,5 @@ require "ruby_cover_band/setlist"
 require "ruby_cover_band/song"
 require "ruby_cover_band/version"
 
-require "ruby_cover_band/line_coverage"
-
 module RubyCoverBand
 end
