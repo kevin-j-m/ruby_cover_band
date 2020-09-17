@@ -1,5 +1,24 @@
 module RubyCoverBand
   RSpec.describe Concert do
+    describe "#set_up" do
+      it "restrings and tunes the guitarist's guitar" do
+        band = Band.new(name: "Nine Inch Nails")
+        guitarist = Instruments::Guitar.new
+        band.guitarist = guitarist
+
+        allow(guitarist).to receive(:change_strings)
+        allow(guitarist).to receive(:tune)
+
+        setlist = Setlist.new(band)
+        concert = Concert.new(setlist: setlist)
+
+        concert.set_up
+
+        expect(guitarist).to have_received(:change_strings)
+        expect(guitarist).to have_received(:tune)
+      end
+    end
+
     describe "#perform" do
       it "plays each of the songs in the setlist" do
         band = Band.new(name: "Nine Inch Nails")

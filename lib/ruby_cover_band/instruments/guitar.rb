@@ -32,7 +32,6 @@ module RubyCoverBand
         end
       end
 
-      # TODO: public API test
       def change_strings
         @strings.clear
 

@@ -22,6 +22,18 @@ module RubyCoverBand
           expect(guitar.strings.map(&:tuning_note)).to eq [:d, :a, :d, :g, :b, :e]
         end
       end
+
+      describe "#change_strings" do
+        it "provides new strings that aren't tuned to any note" do
+          guitar = Guitar.new
+          guitar.tune
+
+          expect { guitar.change_strings }
+            .to change { guitar.strings.map(&:tuning_note) }
+            .from([:e, :a, :d, :g, :b, :e])
+            .to([nil, nil, nil, nil, nil, nil])
+        end
+      end
     end
   end
 end
