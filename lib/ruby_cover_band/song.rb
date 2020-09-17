@@ -1,6 +1,8 @@
 module RubyCoverBand
   class Song
-    def initialize(beats:, name:)
+    attr_reader :name
+
+    def initialize(beats: [], name:)
       @beats = beats
       @name = name
     end
