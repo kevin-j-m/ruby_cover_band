@@ -56,7 +56,7 @@ module RubyCoverBand
 
       class StringPerformance
         def self.exhausted?
-          rand(1..5) == 3
+          rand(1..30) == 3
         end
       end
     end

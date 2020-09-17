@@ -32,8 +32,7 @@ module RubyCoverBand
         end
       end
 
-      private
-
+      # TODO: public API test
       def change_strings
         @strings.clear
 
@@ -41,6 +40,8 @@ module RubyCoverBand
           @strings << Guitar::String.new(nil)
         end
       end
+
+      private
 
       def standard_tuning
         @strings[0].tune(:e)
