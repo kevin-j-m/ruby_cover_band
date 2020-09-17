@@ -6,7 +6,7 @@ module RubyCoverBand
           allow(Guitar::StringPerformance).to receive(:exhausted?).and_return(false)
 
           guitar = Guitar.new(tuning: :drop_d)
-          chord = Guitar::Chord.new(:c)
+          chord = Guitar::Chords::CHalfBar.new
 
           expect(guitar.strum(chord)).to eq [nil, :e, :g, :c, :e, nil]
         end

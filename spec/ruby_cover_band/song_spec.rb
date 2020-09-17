@@ -31,8 +31,8 @@ module RubyCoverBand
       it "plays all the beats of the songs" do
           allow(Instruments::Guitar::StringPerformance).to receive(:exhausted?).and_return(false)
 
-        first_beat = Beat.new(guitar_chord: Instruments::Guitar::Chord.new(:c))
-        second_beat = Beat.new(guitar_chord: Instruments::Guitar::Chord.new(:f))
+        first_beat = Beat.new(guitar_chord: Instruments::Guitar::Chords::CHalfBar.new)
+        second_beat = Beat.new(guitar_chord: Instruments::Guitar::Chords::FHalfBar.new)
 
         song = Song.new(beats: [first_beat, second_beat], name: "Copy of A")
 
