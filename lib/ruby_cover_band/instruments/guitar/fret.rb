@@ -2,6 +2,8 @@ module RubyCoverBand
   module Instruments
     class Guitar
       class Fret
+        attr_reader :number
+
         def initialize(number:, string_tuning:)
           @number = number
           @string_tuning = string_tuning

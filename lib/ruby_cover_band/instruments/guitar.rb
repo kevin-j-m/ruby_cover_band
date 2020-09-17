@@ -35,8 +35,8 @@ module RubyCoverBand
       def change_strings
         @strings.clear
 
-        6.times do
-          @strings << Guitar::String.new(nil)
+        6.times do |string_number|
+          @strings << Guitar::String.new(number: string_number, tuning_note: nil)
         end
       end
 

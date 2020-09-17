@@ -4,7 +4,7 @@ module RubyCoverBand
       RSpec.describe String do
         describe "#tune" do
           it "sets the tuning note to the note provided" do
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
 
             expect { string.tune(:b) }
               .to change { string.tuning_note }
@@ -17,7 +17,7 @@ module RubyCoverBand
           it "does not attempt to play a note if no fret is provided" do
             allow(StringPerformance).to receive(:exhausted?)
 
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
 
             string.pluck(fret: nil)
 
@@ -27,7 +27,7 @@ module RubyCoverBand
           it "does not attempt to play a note if the string is broken" do
             allow(StringPerformance).to receive(:exhausted?)
 
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
             string.instance_variable_set(:@broken, true)
 
             string.pluck(fret: 1)
@@ -38,7 +38,7 @@ module RubyCoverBand
           it "breaks the string if plucking the string removes all tension" do
             allow(StringPerformance).to receive(:exhausted?).and_return(false)
 
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
             string.instance_variable_set(:@tension, -1)
 
             expect { string.pluck(fret: 12) }
@@ -50,7 +50,7 @@ module RubyCoverBand
           it "breaks the string if the string performance reports the string is exhausted" do
             allow(StringPerformance).to receive(:exhausted?).and_return(true)
 
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
 
             expect { string.pluck(fret: 12) }
               .to change { string.broken? }
@@ -61,7 +61,7 @@ module RubyCoverBand
           it "reduces the tension when playing a note" do
             allow(StringPerformance).to receive(:exhausted?).and_return(false)
 
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
 
             expect { string.pluck(fret: 0) }
               .to change { string.tension }
@@ -72,7 +72,7 @@ module RubyCoverBand
           it "plays the note associated with that fret position for the string" do
             allow(StringPerformance).to receive(:exhausted?).and_return(false)
 
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
 
             expect(string.pluck(fret: 0)).to eq :a
           end
@@ -80,13 +80,13 @@ module RubyCoverBand
 
         describe "#broken?" do
           it "is not broken for a new string" do
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
 
             expect(string.broken?).to eq false
           end
 
           it "is broken after someone breaks it" do
-            string = String.new(:a)
+            string = String.new(number: 1, tuning_note: :a)
 
             string.send(:break_string)
 
