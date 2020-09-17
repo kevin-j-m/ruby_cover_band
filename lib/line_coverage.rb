@@ -1,4 +1,3 @@
-require "coverage"
 require_relative "ruby_cover_band/band"
 require_relative "ruby_cover_band/beat"
 require_relative "ruby_cover_band/concert"
