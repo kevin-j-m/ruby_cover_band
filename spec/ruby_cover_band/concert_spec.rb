@@ -3,7 +3,7 @@ module RubyCoverBand
     describe "#set_up" do
       it "restrings and tunes the guitarist's guitar" do
         band = Band.new(name: "Nine Inch Nails")
-        guitarist = Instruments::Guitar.new
+        guitarist = Instruments::Guitar.new(amplifier: PracticeAmplifier.new)
         band.guitarist = guitarist
 
         allow(guitarist).to receive(:change_strings)

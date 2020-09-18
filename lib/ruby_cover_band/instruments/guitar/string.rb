@@ -5,9 +5,10 @@ module RubyCoverBand
         attr_reader :tension
         attr_reader :tuning_note
 
-        def initialize(number:, tuning_note:)
+        def initialize(number:, tuning_note:, amplifier:)
           @number = number
           @tuning_note = tuning_note
+          @amplifier = amplifier
           @tension = 100
           @broken = false
         end
@@ -17,7 +18,7 @@ module RubyCoverBand
         end
 
         def pluck(fret:)
-          return unless fret && playable?
+          return OpenStruct.new(note: nil, amp_value: nil) unless fret && playable?
 
           if exhausted?
             break_string
@@ -44,13 +45,20 @@ module RubyCoverBand
         def play_note(fret_number)
           fret = Fret.new(number: fret_number, string_tuning: tuning_note)
 
-          fret.note
+          # @amplifier.play("play note(:#{playable_note_root}) + #{fret_number} ")
+            # "with_synth :pluck do "\
+            #   "play note(#{playable_note_root}) + fret_number "|
+            #   "end"
+          # )
+          OpenStruct.new(note: fret.note, amp_value: "(note(:#{playable_note_root}) + #{fret_number})")
+          # fret.note
           # TODO: sonic pi stuff
         end
 
         def break_string
           @broken = true
-          :broken
+          # :broken
+          OpenStruct.new(note: nil, amp_value: nil)
           # TODO: sonic pi stuff
         end
 
@@ -97,7 +105,7 @@ module RubyCoverBand
 
       class StringPerformance
         def self.exhausted?
-          rand(1..30) == 3
+          rand(1..100) == 3
         end
       end
     end

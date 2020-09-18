@@ -2,9 +2,10 @@ module RubyCoverBand
   class Song
     attr_reader :name
 
-    def initialize(beats: [], name:)
+    def initialize(beats: [], name:, time_between_beats: 0)
       @beats = beats
       @name = name
+      @time_between_beats = time_between_beats
     end
 
     def performers=(band)
@@ -24,6 +25,7 @@ module RubyCoverBand
         composition << Thread.new { @synth&.program(beat.synth_sound) }
 
         composition.map(&:value)
+        sleep(@time_between_beats)
       end
     end
   end

@@ -15,7 +15,7 @@ module RubyCoverBand
 
       it "sets the band as the performers of the song" do
         band = Band.new(name: "Nine Inch Nails")
-        band.guitarist = Instruments::Guitar.new
+        band.guitarist = Instruments::Guitar.new(amplifier: PracticeAmplifier.new)
         song = Song.new(name: "Terrible Lie")
 
         setlist = Setlist.new(band)

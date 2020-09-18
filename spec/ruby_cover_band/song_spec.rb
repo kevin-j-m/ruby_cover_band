@@ -4,7 +4,7 @@ module RubyCoverBand
       it "decomposes all the members of the band as performers of the song" do
         song = Song.new(beats: [], name: "Somewhat Damaged")
 
-        guitarist = Instruments::Guitar.new
+        guitarist = Instruments::Guitar.new(amplifier: PracticeAmplifier.new)
         singer = Instruments::Vocal.new
         drummer = Instruments::Drum.new
         keyboardist = Instruments::Synthesizer.new
@@ -36,7 +36,7 @@ module RubyCoverBand
 
         song = Song.new(beats: [first_beat, second_beat], name: "Copy of A")
 
-        guitarist = Instruments::Guitar.new
+        guitarist = Instruments::Guitar.new(amplifier: PracticeAmplifier.new)
         band = Band.new
         band.guitarist = guitarist
         song.performers = band

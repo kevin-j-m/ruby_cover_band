@@ -5,7 +5,7 @@ module RubyCoverBand
         it "plays all notes on all strings for the specified chord" do
           allow(Guitar::StringPerformance).to receive(:exhausted?).and_return(false)
 
-          guitar = Guitar.new(tuning: :drop_d)
+          guitar = Guitar.new(tuning: :drop_d, amplifier: PracticeAmplifier.new)
           chord = Guitar::Chords::CHalfBar.new
 
           expect(guitar.strum(chord)).to eq [nil, :e, :g, :c, :e, nil]
@@ -14,7 +14,7 @@ module RubyCoverBand
 
       describe "#tune" do
         it "tunes the guitar to the specified tuning" do
-          guitar = Guitar.new
+          guitar = Guitar.new(amplifier: PracticeAmplifier.new)
           guitar.tuning = :drop_d
 
           guitar.tune
@@ -25,7 +25,7 @@ module RubyCoverBand
 
       describe "#change_strings" do
         it "provides new strings that aren't tuned to any note" do
-          guitar = Guitar.new
+          guitar = Guitar.new(amplifier: PracticeAmplifier.new)
           guitar.tune
 
           expect { guitar.change_strings }

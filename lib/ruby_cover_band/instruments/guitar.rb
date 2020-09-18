@@ -4,24 +4,38 @@ module RubyCoverBand
       attr_reader :strings
       attr_accessor :tuning
 
-      def initialize(tuning: :standard)
+      def initialize(tuning: :standard, amplifier:)
         @tuning = tuning
+        @amplifier = amplifier
         @strings = []
         change_strings
         tune
       end
 
       def strum(chord)
-        phrasing = []
+        phrasing = [
+          strings[0].pluck(fret: chord.first_fret),
+          strings[1].pluck(fret: chord.second_fret),
+          strings[2].pluck(fret: chord.third_fret),
+          strings[3].pluck(fret: chord.fourth_fret),
+          strings[4].pluck(fret: chord.fifth_fret),
+          strings[5].pluck(fret: chord.sixth_fret),
+        ]
 
-        phrasing << Thread.new { strings[0].pluck(fret: chord.first_fret) }
-        phrasing << Thread.new { strings[1].pluck(fret: chord.second_fret) }
-        phrasing << Thread.new { strings[2].pluck(fret: chord.third_fret) }
-        phrasing << Thread.new { strings[3].pluck(fret: chord.fourth_fret) }
-        phrasing << Thread.new { strings[4].pluck(fret: chord.fifth_fret) }
-        phrasing << Thread.new { strings[5].pluck(fret: chord.sixth_fret) }
+        puts "play_pattern_timed [#{phrasing.map(&:amp_value).compact.join(", ")}], 0.1"
+        @amplifier.play("play_pattern_timed [#{phrasing.map(&:amp_value).compact.join(", ")}], 0.1")
 
-        phrasing.map(&:value)
+        phrasing.map(&:note)
+        # phrasing = []
+        #
+        # phrasing << Thread.new { strings[0].pluck(fret: chord.first_fret) }
+        # phrasing << Thread.new { strings[1].pluck(fret: chord.second_fret) }
+        # phrasing << Thread.new { strings[2].pluck(fret: chord.third_fret) }
+        # phrasing << Thread.new { strings[3].pluck(fret: chord.fourth_fret) }
+        # phrasing << Thread.new { strings[4].pluck(fret: chord.fifth_fret) }
+        # phrasing << Thread.new { strings[5].pluck(fret: chord.sixth_fret) }
+        #
+        # phrasing.map(&:value)
       end
 
       def tune
@@ -36,7 +50,11 @@ module RubyCoverBand
         @strings.clear
 
         6.times do |string_number|
-          @strings << Guitar::String.new(number: string_number, tuning_note: nil)
+          @strings << Guitar::String.new(
+            number: string_number,
+            tuning_note: nil,
+            amplifier: @amplifier,
+          )
         end
       end
 
