@@ -24,8 +24,8 @@ module RubyCoverBand
         composition << Thread.new { @drum&.hit(beat.percussion_loop) }
         composition << Thread.new { @synth&.program(beat.synth_sound) }
 
-        composition.map(&:value)
         sleep(@time_between_beats)
+        composition.map(&:value)
       end
     end
   end

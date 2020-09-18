@@ -22,9 +22,13 @@ module RubyCoverBand
           strings[5].pluck(fret: chord.sixth_fret),
         ]
 
-        chord = "play_pattern_timed [#{phrasing.map(&:amp_value).compact.join(", ")}], 0.1"
+        phrasing.select { |s| !s.play_with_pattern? && s.amp_value }.each do |sound|
+          @amplifier.play(sound.amp_value)
+        end
+
+        pattern_notes = phrasing.select(&:play_with_pattern?).map(&:amp_value).compact
+        chord = "play_pattern_timed [#{pattern_notes.join(", ")}], 0.1"
         pluck = ["with_synth :pluck do", chord, "end"]
-        _beep = ["with_synth :beep do", chord, "end"]
         @amplifier.play(pluck.join("\n").strip)
 
         phrasing.map(&:note)

@@ -53,7 +53,7 @@ setlist.add_song(song)
 
 concert = RubyCoverBand::Concert.new(setlist: setlist)
 
-1.times do
+10.times do
   concert.set_up
   concert.perform
   concert.load_out

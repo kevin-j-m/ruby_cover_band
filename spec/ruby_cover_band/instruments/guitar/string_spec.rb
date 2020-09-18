@@ -74,7 +74,7 @@ module RubyCoverBand
 
             string = String.new(number: 1, tuning_note: :a, amplifier: PracticeAmplifier.new)
 
-            expect(string.pluck(fret: 0)).to eq :a
+            expect(string.pluck(fret: 0).note).to eq :a
           end
         end
 
