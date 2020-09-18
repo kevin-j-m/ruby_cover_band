@@ -27,41 +27,21 @@ end
 def build_song(name:)
   beats = []
 
-  # Iron Man - Black Sabbath
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 7), next_beat: 1)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 10), next_beat: 1)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 10), next_beat: 0.5)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 12), next_beat: 0.5)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 12), next_beat: 1)
+  8.times do
+    beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::CHalfBar.new, next_beat: 0.5)
+  end
 
+  8.times do
+    beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::BFlatHalfBar.new, next_beat: 0.5)
+  end
 
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 15), next_beat: 0.25)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 14), next_beat: 0.25)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 15), next_beat: 0.25)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 14), next_beat: 0.25)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 15), next_beat: 0.25)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 10), next_beat: 0.25)
+  8.times do
+    beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::FHalfBar.new, next_beat: 0.5)
+  end
 
-
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 10), next_beat: 0.5)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 10), next_beat: 0.5)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 12), next_beat: 0.5)
-  beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::PowerChord.new(string_number: 0, fret_number: 12), next_beat: 0.5)
-  # 8.times do
-  #   beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::CHalfBar.new, next_beat: 0.5)
-  # end
-  #
-  # 8.times do
-  #   beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::BFlatHalfBar.new, next_beat: 0.5)
-  # end
-  #
-  # 8.times do
-  #   beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::FHalfBar.new, next_beat: 0.5)
-  # end
-  #
-  # 8.times do
-  #   beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::DHalfBar.new, next_beat: 0.5)
-  # end
+  8.times do
+    beats << RubyCoverBand::Beat.new(guitar_chord: RubyCoverBand::Instruments::Guitar::Chords::DHalfBar.new, next_beat: 0.5)
+  end
 
   RubyCoverBand::Song.new(beats: beats, name: name)
 end
@@ -74,7 +54,7 @@ setlist.add_song(song)
 
 concert = RubyCoverBand::Concert.new(setlist: setlist)
 
-1.times do
+10.times do
   concert.set_up
   concert.perform
   concert.load_out
