@@ -3,7 +3,7 @@
 require "coverage"
 
 Coverage.start(lines: true)
-load "lib/line_coverage.rb"
+load "lib/concert_simulation.rb"
 result = Coverage.result
 
 # p result

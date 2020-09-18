@@ -1,3 +1,4 @@
+# TODO: clean these requires up so they're consistent
 require_relative "ruby_cover_band/amplifier"
 require_relative "ruby_cover_band/band"
 require_relative "ruby_cover_band/beat"
