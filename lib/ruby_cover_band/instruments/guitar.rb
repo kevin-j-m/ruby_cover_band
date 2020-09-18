@@ -22,20 +22,12 @@ module RubyCoverBand
           strings[5].pluck(fret: chord.sixth_fret),
         ]
 
-        puts "play_pattern_timed [#{phrasing.map(&:amp_value).compact.join(", ")}], 0.1"
-        @amplifier.play("play_pattern_timed [#{phrasing.map(&:amp_value).compact.join(", ")}], 0.1")
+        chord = "play_pattern_timed [#{phrasing.map(&:amp_value).compact.join(", ")}], 0.1"
+        pluck = ["with_synth :pluck do", chord, "end"]
+        _beep = ["with_synth :beep do", chord, "end"]
+        @amplifier.play(pluck.join("\n").strip)
 
         phrasing.map(&:note)
-        # phrasing = []
-        #
-        # phrasing << Thread.new { strings[0].pluck(fret: chord.first_fret) }
-        # phrasing << Thread.new { strings[1].pluck(fret: chord.second_fret) }
-        # phrasing << Thread.new { strings[2].pluck(fret: chord.third_fret) }
-        # phrasing << Thread.new { strings[3].pluck(fret: chord.fourth_fret) }
-        # phrasing << Thread.new { strings[4].pluck(fret: chord.fifth_fret) }
-        # phrasing << Thread.new { strings[5].pluck(fret: chord.sixth_fret) }
-        #
-        # phrasing.map(&:value)
       end
 
       def tune
