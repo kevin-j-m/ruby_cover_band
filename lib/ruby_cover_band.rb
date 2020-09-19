@@ -16,6 +16,7 @@ require "ruby_cover_band/note"
 require "ruby_cover_band/practice_amplifier"
 require "ruby_cover_band/setlist"
 require "ruby_cover_band/song"
+require "ruby_cover_band/songs/the_line_begins_to_blur"
 require "ruby_cover_band/version"
 
 module RubyCoverBand

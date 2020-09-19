@@ -16,6 +16,7 @@ require_relative "ruby_cover_band/instruments/vocal"
 require_relative "ruby_cover_band/note"
 require_relative "ruby_cover_band/setlist"
 require_relative "ruby_cover_band/song"
+require_relative "ruby_cover_band/songs/the_line_begins_to_blur"
 require_relative "ruby_cover_band/version"
 
 def build_band(name: "Nine Inch Nails")
@@ -25,33 +26,10 @@ def build_band(name: "Nine Inch Nails")
   band
 end
 
-def build_song(name:)
-  notes = []
-
-  8.times do
-    notes << RubyCoverBand::Note.new(guitar_line: RubyCoverBand::Instruments::Guitar::Chords::CHalfBar.new, duration: 0.5)
-  end
-
-  8.times do
-    notes << RubyCoverBand::Note.new(guitar_line: RubyCoverBand::Instruments::Guitar::Chords::BFlatHalfBar.new, duration: 0.5)
-  end
-
-  8.times do
-    notes << RubyCoverBand::Note.new(guitar_line: RubyCoverBand::Instruments::Guitar::Chords::FHalfBar.new, duration: 0.5)
-  end
-
-  8.times do
-    notes << RubyCoverBand::Note.new(guitar_line: RubyCoverBand::Instruments::Guitar::Chords::DHalfBar.new, duration: 0.5)
-  end
-
-  RubyCoverBand::Song.new(notes: notes, name: name)
-end
-
 band = build_band(name: "Nine Inch Nails")
-song = build_song(name: "The Line Begins To Blur")
 
 setlist = RubyCoverBand::Setlist.new(band)
-setlist.add_song(song)
+setlist.add_song(RubyCoverBand::Songs::TheLineBeginsToBlur.new)
 
 concert = RubyCoverBand::Concert.new(setlist: setlist)
 
