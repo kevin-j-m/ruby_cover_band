@@ -14,15 +14,15 @@ module RubyCoverBand
       end
 
       def chorus_strum(chord)
-        RubyCoverBand::Note.new(guitar_line: chord, duration: 0.5)
+        Note.new(guitar_line: chord, duration: 0.5)
       end
 
       def chorus_chords
         [
-          RubyCoverBand::Instruments::Guitar::Chords::CHalfBar.new,
-          RubyCoverBand::Instruments::Guitar::Chords::BFlatHalfBar.new,
-          RubyCoverBand::Instruments::Guitar::Chords::FHalfBar.new,
-          RubyCoverBand::Instruments::Guitar::Chords::DHalfBar.new,
+          Instruments::Guitar::Chords::CHalfBar.new,
+          Instruments::Guitar::Chords::BFlatHalfBar.new,
+          Instruments::Guitar::Chords::FHalfBar.new,
+          Instruments::Guitar::Chords::DHalfBar.new,
         ]
       end
     end

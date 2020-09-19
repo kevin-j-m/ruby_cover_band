@@ -2,7 +2,7 @@ module RubyCoverBand
   module Instruments
     class Guitar
       module Chords
-        class FHalfBar
+        class FHalfBar < Chord
           def first_fret
             nil
           end

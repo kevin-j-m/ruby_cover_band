@@ -2,7 +2,7 @@ module RubyCoverBand
   module Instruments
     class Guitar
       module Chords
-        class PowerChord
+        class PowerChord < Chord
           def initialize(string_number:, fret_number:)
             @string_number = string_number
             @fret_number = fret_number

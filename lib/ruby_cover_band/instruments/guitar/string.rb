@@ -77,8 +77,12 @@ module RubyCoverBand
           "(note(:#{playable_note_root}) + #{@fret_number})"
         end
 
-        def play_with_pattern?
+        def play_in_pattern?
           true
+        end
+
+        def makes_sound?
+          !!amp_value
         end
 
         private
@@ -125,8 +129,12 @@ module RubyCoverBand
           nil
         end
 
-        def play_with_pattern?
+        def play_in_pattern?
           false
+        end
+
+        def makes_sound?
+          !!amp_value
         end
       end
 
@@ -139,8 +147,12 @@ module RubyCoverBand
           "sample :elec_pop, amp: 3"
         end
 
-        def play_with_pattern?
+        def play_in_pattern?
           false
+        end
+
+        def makes_sound?
+          !!amp_value
         end
       end
     end
