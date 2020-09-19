@@ -2,7 +2,7 @@ module RubyCoverBand
   RSpec.describe Song do
     describe "#performers=" do
       it "decomposes all the members of the band as performers of the song" do
-        song = Song.new(beats: [], name: "Somewhat Damaged")
+        song = Song.new(notes: [], name: "Somewhat Damaged")
 
         guitarist = Instruments::Guitar.new(amplifier: PracticeAmplifier.new)
         singer = Instruments::Vocal.new
@@ -28,13 +28,13 @@ module RubyCoverBand
     end
 
     describe "#play" do
-      it "plays all the beats of the songs" do
+      it "plays all the notes of the songs" do
           allow(Instruments::Guitar::StringPerformance).to receive(:exhausted?).and_return(false)
 
-        first_beat = Beat.new(guitar_chord: Instruments::Guitar::Chords::CHalfBar.new)
-        second_beat = Beat.new(guitar_chord: Instruments::Guitar::Chords::FHalfBar.new)
+        first_note = Note.new(guitar_line: Instruments::Guitar::Chords::CHalfBar.new)
+        second_note = Note.new(guitar_line: Instruments::Guitar::Chords::FHalfBar.new)
 
-        song = Song.new(beats: [first_beat, second_beat], name: "Copy of A")
+        song = Song.new(notes: [first_note, second_note], name: "Copy of A")
 
         guitarist = Instruments::Guitar.new(amplifier: PracticeAmplifier.new)
         band = Band.new

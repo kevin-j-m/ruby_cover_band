@@ -2,8 +2,8 @@ module RubyCoverBand
   class Song
     attr_reader :name
 
-    def initialize(beats: [], name:)
-      @beats = beats
+    def initialize(notes: [], name:)
+      @notes = notes
       @name = name
     end
 
@@ -15,15 +15,15 @@ module RubyCoverBand
     end
 
     def play
-      @beats.map do |beat|
+      @notes.map do |note|
         composition = []
 
-        composition << Thread.new { @guitar&.strum(beat.guitar_chord) }
-        composition << Thread.new { @vocal&.sing(beat.lyric_line) }
-        composition << Thread.new { @drum&.hit(beat.percussion_loop) }
-        composition << Thread.new { @synth&.program(beat.synth_sound) }
+        composition << Thread.new { @guitar&.strum(note.guitar_line) }
+        composition << Thread.new { @vocal&.sing(note.lyric) }
+        composition << Thread.new { @drum&.hit(note.beat) }
+        composition << Thread.new { @synth&.program(note.synth_sound) }
 
-        sleep(beat.next_beat)
+        sleep(note.duration)
         composition.map(&:value)
       end
     end
