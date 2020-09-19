@@ -9,7 +9,7 @@ module RubyCoverBand
           @number = number
           @tuning_note = tuning_note
           @amplifier = amplifier
-          @tension = 100
+          @tension = 1000
           @broken = false
         end
 
@@ -58,7 +58,7 @@ module RubyCoverBand
 
       class StringPerformance
         def self.exhausted?
-          rand(1..100) == 3
+          rand(1..1000) == 3
         end
       end
 

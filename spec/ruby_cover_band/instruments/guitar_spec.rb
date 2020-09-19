@@ -2,22 +2,24 @@ module RubyCoverBand
   module Instruments
     RSpec.describe Guitar do
       describe "#play" do
-        it "strums the guitar when a chord is provided" do
+        it "strums the guitar when a note with a chord is provided" do
           allow(Guitar::StringPerformance).to receive(:exhausted?).and_return(false)
 
           guitar = Guitar.new(tuning: :drop_d, amplifier: PracticeAmplifier.new)
           chord = Guitar::Chords::CHalfBar.new
+          note = Note.new(guitar_line: chord)
 
-          expect(guitar.play(chord)).to eq [nil, :e, :g, :c, :e, nil]
+          expect(guitar.play(note)).to eq [nil, :e, :g, :c, :e, nil]
         end
 
-        it "picks a string when a finger placement is provided" do
+        it "picks a string when a note with a finger placement is provided" do
           allow(Guitar::StringPerformance).to receive(:exhausted?).and_return(false)
 
           guitar = Guitar.new(amplifier: PracticeAmplifier.new)
           placement = Guitar::FingerPlacement.new(string_number: 0, fret: 3)
+          note = Note.new(guitar_line: placement)
 
-          expect(guitar.play(placement)).to eq :g
+          expect(guitar.play(note)).to eq :g
         end
       end
 

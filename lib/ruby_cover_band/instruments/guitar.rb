@@ -12,11 +12,15 @@ module RubyCoverBand
         tune
       end
 
-      def play(fingering)
-        public_send(fingering.operation, fingering)
+      def play(note)
+        public_send(
+          note.guitar_line.operation,
+          note.guitar_line,
+          duration: note.duration,
+        )
       end
 
-      def strum(chord)
+      def strum(chord, duration: 1)
         phrasing = [
           strings[0].pluck(fret: chord.first_fret),
           strings[1].pluck(fret: chord.second_fret),
@@ -27,20 +31,20 @@ module RubyCoverBand
         ]
 
         phrasing.select { |s| !s.play_in_pattern? && s.amp_value }.each do |sound|
-          @amplifier.play(sound_output(sound.amp_value))
+          @amplifier.play(sound_output(sound.amp_value, duration: 1))
         end
 
         pattern_notes = phrasing.select(&:play_in_pattern?).map(&:amp_value).compact
-        @amplifier.play(sound_output("play_pattern_timed [#{pattern_notes.join(", ")}], 0.1"))
+        @amplifier.play(sound_output("play_pattern_timed [#{pattern_notes.join(", ")}], 0.05", duration: duration))
 
         phrasing.map(&:note)
       end
 
-      def pick(finger_placement)
+      def pick(finger_placement, duration: 1)
         result = strings[finger_placement.string_number].pluck(fret: finger_placement.fret)
 
         if result.makes_sound?
-          @amplifier.play(sound_output("play #{result.amp_value}"))
+          @amplifier.play(sound_output("play #{result.amp_value}", duration: duration))
         end
 
         result.note
@@ -68,8 +72,12 @@ module RubyCoverBand
 
       private
 
-      def sound_output(play_operation)
-        ["with_synth :pluck do", play_operation, "end"].join("\n").strip
+      def sound_output(play_operation, duration: 1)
+        [
+          "with_synth :pluck do",
+          "#{play_operation}, release: #{duration}",
+          "end",
+        ].join("\n").strip
       end
 
       def standard_tuning

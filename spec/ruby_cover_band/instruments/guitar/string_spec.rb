@@ -65,8 +65,8 @@ module RubyCoverBand
 
             expect { string.pluck(fret: 0) }
               .to change { string.tension }
-              .from(100)
-              .to(99)
+              .from(1000)
+              .to(999)
           end
 
           it "plays the note associated with that fret position for the string" do
