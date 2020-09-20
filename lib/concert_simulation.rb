@@ -2,7 +2,6 @@
 require_relative "ruby_cover_band/amplifier"
 require_relative "ruby_cover_band/band"
 require_relative "ruby_cover_band/concert"
-require_relative "ruby_cover_band/instruments/drum"
 require_relative "ruby_cover_band/instruments/guitar"
 require_relative "ruby_cover_band/instruments/guitar/chords/chord"
 require_relative "ruby_cover_band/instruments/guitar/chords/b_flat_half_bar"
@@ -14,14 +13,10 @@ require_relative "ruby_cover_band/instruments/guitar/chords/power_chord"
 require_relative "ruby_cover_band/instruments/guitar/finger_placement"
 require_relative "ruby_cover_band/instruments/guitar/fret"
 require_relative "ruby_cover_band/instruments/guitar/string"
-require_relative "ruby_cover_band/instruments/synthesizer"
-require_relative "ruby_cover_band/instruments/synthesizer/sound_bank"
-require_relative "ruby_cover_band/instruments/vocal"
 require_relative "ruby_cover_band/note"
 require_relative "ruby_cover_band/setlist"
 require_relative "ruby_cover_band/song"
 require_relative "ruby_cover_band/songs/the_line_begins_to_blur"
-require_relative "ruby_cover_band/version"
 
 def build_band(name: "Nine Inch Nails")
   band = RubyCoverBand::Band.new(name: name)
