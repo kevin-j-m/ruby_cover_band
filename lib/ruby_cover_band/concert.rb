@@ -5,8 +5,8 @@ module RubyCoverBand
     end
 
     def set_up
-      band.guitarist.change_strings
-      band.guitarist.tune
+      band.guitarist&.change_strings
+      band.guitarist&.tune
     end
 
     def load_out

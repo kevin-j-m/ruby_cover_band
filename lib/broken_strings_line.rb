@@ -1,9 +1,9 @@
-# ruby lib/line_coverage_results.rb
+# ruby lib/line_broken_strings.rb
 
 require "coverage"
 
 Coverage.start(lines: true)
-load "lib/concert_simulation.rb"
+load "lib/tour_leg_1.rb"
 result = Coverage.result
 
 # p result
