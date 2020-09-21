@@ -1,32 +1,47 @@
-require "ruby_cover_band/instruments/synthesizer/patch"
-require "ruby_cover_band/instruments/synthesizer/patch_memory"
-require "ruby_cover_band/instruments/synthesizer/sound_bank"
-
 module RubyCoverBand
   module Instruments
     class Synthesizer
+      attr_reader :current_patch, :patch_memory
+
       def initialize
-        @sound_bank = SoundBank.new
         @patch_memory = PatchMemory.new
+        @current_patch = nil
       end
 
-      # TODO: patches
-      # What to check which patches are used,
-      # not the sound bank
-      # How am I modeling patches?
-      # Or do I change the example to see about removing
-      # sounds from the sound bank?
-      # Maybe rather than using a hash
-      # I represent the memory in a separate object
-      # that's basically a hash, but has different access to each
-      # element?
       def save_patch(location:, patch:)
         @patch_memory.write(location: location, patch: patch)
       end
 
       def program(note)
-        set_patch(note.synth.something)
-        play_key(note.synth.keypress, note.duration)
+        set_patch(note.synth_sound.memory_location)
+        play_key(key: note.synth_sound.key, duration: note.duration)
+      end
+
+      def set_patch(location)
+        @current_patch = @patch_memory.read(location)
+      end
+
+      def play_key(key:, duration:)
+        notes[(key - 1) % 12]
+      end
+
+      private
+
+      def notes
+        [
+          :a,
+          :b_flat,
+          :b,
+          :c,
+          :d_flat,
+          :d,
+          :e_flat,
+          :e,
+          :f,
+          :g_flat,
+          :g,
+          :a_flat,
+        ]
       end
     end
   end
