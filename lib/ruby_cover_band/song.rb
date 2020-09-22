@@ -11,7 +11,7 @@ module RubyCoverBand
       @guitar = band.guitarist
       @vocal = band.singer
       @drum = band.drummer
-      @synth = band.keyboardist
+      @keyboardist = band.keyboardist
     end
 
     def play
@@ -21,7 +21,7 @@ module RubyCoverBand
         composition << Thread.new { @guitar&.play(note) }
         composition << Thread.new { @vocal&.sing(note) }
         composition << Thread.new { @drum&.hit(note) }
-        composition << Thread.new { @synth&.program(note) }
+        composition << Thread.new { @keyboardist&.program(note) }
 
         sleep(note.duration)
         composition.map(&:value)

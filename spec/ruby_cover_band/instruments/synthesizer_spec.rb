@@ -19,7 +19,7 @@ module RubyCoverBand
           patch = Synthesizer::Patch.new(sound: :buzz)
           synth.save_patch(location: :a1, patch: patch)
 
-          sound = Synthesizer::SynthSound.new(memory_location: :a1, key: 1)
+          sound = Synthesizer::SynthSound.new(patch: patch, key: 1)
           note = Note.new(synth_sound: sound)
 
           expect { synth.program(note) }
@@ -34,7 +34,7 @@ module RubyCoverBand
           patch = Synthesizer::Patch.new(sound: :buzz)
           synth.save_patch(location: :a1, patch: patch)
 
-          sound = Synthesizer::SynthSound.new(memory_location: :a1, key: 1)
+          sound = Synthesizer::SynthSound.new(patch: patch, key: 1)
           note = Note.new(synth_sound: sound)
 
           expect(synth.program(note)).to eq :a
@@ -42,13 +42,13 @@ module RubyCoverBand
       end
 
       describe "#set_patch" do
-        it "sets the current patch to what is in that memory location" do
+        it "sets the current patch to that patch when it's in memory" do
           synth = Synthesizer.new(brand: :moog)
 
           patch = Synthesizer::Patch.new(sound: :buzz)
           synth.save_patch(location: :a1, patch: patch)
 
-          expect { synth.set_patch(:a1) }
+          expect { synth.set_patch(patch) }
             .to change { synth.current_patch }
             .from(nil)
             .to(patch)
@@ -72,6 +72,25 @@ module RubyCoverBand
           synth = Synthesizer.new(brand: :moog)
 
           expect(synth.play_key(key: 88, duration: 1)).to eq :c
+        end
+      end
+
+      describe "#find" do
+        it "provides the memory location for the desired patch" do
+          patch = Synthesizer::Patch.new(sound: :buzz)
+
+          synth = Synthesizer.new(brand: :moog)
+          synth.save_patch(location: :b2, patch: patch)
+
+          expect(synth.find(patch)).to eq :b2
+        end
+
+        it "returns nil if the patch isn't in memory" do
+          patch = Synthesizer::Patch.new(sound: :buzz)
+
+          synth = Synthesizer.new(brand: :moog)
+
+          expect(synth.find(patch)).to be_nil
         end
       end
     end

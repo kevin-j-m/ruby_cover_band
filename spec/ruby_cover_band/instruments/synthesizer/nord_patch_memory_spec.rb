@@ -40,6 +40,25 @@ module RubyCoverBand
             expect(memory.memory).to eq ["a1", "a2", "b1", "b2"]
           end
         end
+
+        describe "#find" do
+          it "provides the memory location for the desired patch" do
+            patch = Patch.new(sound: :buzz)
+
+            memory = NordPatchMemory.new
+            memory.write(location: :b2, patch: patch)
+
+            expect(memory.find(patch)).to eq :b2
+          end
+
+          it "returns nil if the patch isn't in memory" do
+            patch = Patch.new(sound: :buzz)
+
+            memory = NordPatchMemory.new
+
+            expect(memory.find(patch)).to be_nil
+          end
+        end
       end
     end
   end

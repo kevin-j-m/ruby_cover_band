@@ -5,7 +5,7 @@ module RubyCoverBand
 
       def initialize(brand:)
         @brand = brand
-        @patch_memory = initialize_memory#PatchMemory.new
+        @patch_memory = initialize_memory
         @current_patch = nil
       end
 
@@ -14,12 +14,22 @@ module RubyCoverBand
       end
 
       def program(note)
-        set_patch(note.synth_sound.memory_location)
+        set_patch(note.synth_sound.patch)
         play_key(key: note.synth_sound.key, duration: note.duration)
       end
 
-      def set_patch(location)
-        @current_patch = @patch_memory.read(location)
+      def find(patch)
+        @patch_memory.find(patch)
+      end
+
+      def set_patch(patch)
+        return unless patch
+
+        location = find(patch)
+
+        if location
+          @current_patch = @patch_memory.read(location)
+        end
       end
 
       def play_key(key:, duration:)

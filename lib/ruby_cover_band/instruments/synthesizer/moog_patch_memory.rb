@@ -8,6 +8,10 @@ module RubyCoverBand
           @memory = []
         end
 
+        def find(patch)
+          location(@memory.index(patch))
+        end
+
         def read(location)
           @memory[index(location)]
         end
@@ -37,6 +41,12 @@ module RubyCoverBand
           elsif location == :b2
             3
           end
+        end
+
+        def location(index)
+          return nil unless index
+
+          [:a1, :a2, :b1, :b2][index]
         end
       end
     end

@@ -7,7 +7,7 @@ module RubyCoverBand
         guitarist = Instruments::Guitar.new(amplifier: PracticeAmplifier.new)
         singer = Instruments::Vocal.new
         drummer = Instruments::Drum.new
-        keyboardist = Instruments::Synthesizer.new(brand: :moog)
+        keyboardist = Band::Keyboardist.new
 
         band = Band.new
         band.guitarist = guitarist
@@ -22,7 +22,7 @@ module RubyCoverBand
           .from(nil).to(singer)
           .and change { song.instance_variable_get(:@drum) }
           .from(nil).to(drummer)
-          .and change { song.instance_variable_get(:@synth) }
+          .and change { song.instance_variable_get(:@keyboardist) }
           .from(nil).to(keyboardist)
       end
     end

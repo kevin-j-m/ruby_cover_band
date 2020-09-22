@@ -1,4 +1,5 @@
 require_relative "ruby_cover_band/band"
+require_relative "ruby_cover_band/band/keyboardist"
 require_relative "ruby_cover_band/concert"
 require_relative "ruby_cover_band/note"
 require_relative "ruby_cover_band/setlist"
@@ -11,27 +12,27 @@ require_relative "ruby_cover_band/instruments/synthesizer/nord_patch_memory"
 require_relative "ruby_cover_band/instruments/synthesizer/sound_bank"
 require_relative "ruby_cover_band/instruments/synthesizer/synth_sound"
 
-beep = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :beep, effect: :flanger)
-boop = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :boop, filter: :highpass, effect: :chorus)
-buzz = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :buzz, oscillator: :triangle)
-whirr = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :whirr, oscillator: :sawtooth)
+beep = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :beep)
+boop = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :boop)
+buzz = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :buzz)
+unused_buzz = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :buzz, effect: :chorus)
+whirr = RubyCoverBand::Instruments::Synthesizer::Patch.new(sound: :whirr)
 
-# TODO: have 2 synths so can consolidate results into one
-# This may mean two different patch memory classes based on the type of synth.
-# Have synth take an arg for the type/brand
-# How does the note tell you which to play?
-# Right now the patch location is passed in
-# Maybe it should be something else and the patches need to be searched first?
-# Probably should pass in the patch itself? Or need a == for a patch to compare
-# them, because won't have the same object in memory.
-synth = RubyCoverBand::Instruments::Synthesizer.new(brand: :moog)
-synth.save_patch(location: :a1, patch: beep)
-synth.save_patch(location: :a2, patch: boop)
-synth.save_patch(location: :b1, patch: buzz)
-synth.save_patch(location: :b2, patch: whirr)
+moog = RubyCoverBand::Instruments::Synthesizer.new(brand: :moog)
+moog.save_patch(location: :a1, patch: beep)
+moog.save_patch(location: :a2, patch: boop)
+moog.save_patch(location: :b1, patch: unused_buzz)
+moog.save_patch(location: :b2, patch: whirr)
+
+nord = RubyCoverBand::Instruments::Synthesizer.new(brand: :nord)
+nord.save_patch(location: :a1, patch: buzz)
+
+keyboardist = RubyCoverBand::Band::Keyboardist.new
+keyboardist.add(moog)
+keyboardist.add(nord)
 
 band = RubyCoverBand::Band.new(name: "Nine Inch Nails")
-band.keyboardist = synth
+band.keyboardist = keyboardist
 
 setlist = RubyCoverBand::Setlist.new(band)
 setlist.add_song(RubyCoverBand::Songs::OneWayToGetThere.new)

@@ -8,6 +8,10 @@ module RubyCoverBand
           @memory = []
         end
 
+        def find(patch)
+          location(@memory.index(patch))
+        end
+
         def read(location)
           case location
           when :a1
@@ -36,16 +40,10 @@ module RubyCoverBand
 
         private
 
-        def index(location)
-          if location == :a1
-            0
-          elsif location == :a2
-            1
-          elsif location == :b1
-            2
-          elsif location == :b2
-            3
-          end
+        def location(index)
+          return nil unless index
+
+          [:a1, :a2, :b1, :b2][index]
         end
       end
     end
