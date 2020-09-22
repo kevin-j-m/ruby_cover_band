@@ -1,10 +1,11 @@
 module RubyCoverBand
   module Instruments
     class Synthesizer
-      attr_reader :current_patch, :patch_memory
+      attr_reader :brand, :current_patch, :patch_memory
 
-      def initialize
-        @patch_memory = PatchMemory.new
+      def initialize(brand:)
+        @brand = brand
+        @patch_memory = initialize_memory#PatchMemory.new
         @current_patch = nil
       end
 
@@ -26,6 +27,14 @@ module RubyCoverBand
       end
 
       private
+
+      def initialize_memory
+        if @brand == :moog
+          MoogPatchMemory.new
+        elsif @brand == :nord
+          NordPatchMemory.new
+        end
+      end
 
       def notes
         [

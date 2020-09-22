@@ -3,7 +3,7 @@ module RubyCoverBand
     RSpec.describe Synthesizer do
       describe "#save_patch" do
         it "adds the patch to the synth's memory" do
-          synth = Synthesizer.new
+          synth = Synthesizer.new(brand: :moog)
 
           patch = Synthesizer::Patch.new(sound: :buzz)
           synth.save_patch(location: :a1, patch: patch)
@@ -14,7 +14,7 @@ module RubyCoverBand
 
       describe "#program" do
         it "sets the current patch being used that's needed by the note" do
-          synth = Synthesizer.new
+          synth = Synthesizer.new(brand: :moog)
 
           patch = Synthesizer::Patch.new(sound: :buzz)
           synth.save_patch(location: :a1, patch: patch)
@@ -29,7 +29,7 @@ module RubyCoverBand
         end
 
         it "plays the key for the note" do
-          synth = Synthesizer.new
+          synth = Synthesizer.new(brand: :moog)
 
           patch = Synthesizer::Patch.new(sound: :buzz)
           synth.save_patch(location: :a1, patch: patch)
@@ -43,7 +43,7 @@ module RubyCoverBand
 
       describe "#set_patch" do
         it "sets the current patch to what is in that memory location" do
-          synth = Synthesizer.new
+          synth = Synthesizer.new(brand: :moog)
 
           patch = Synthesizer::Patch.new(sound: :buzz)
           synth.save_patch(location: :a1, patch: patch)
@@ -57,19 +57,19 @@ module RubyCoverBand
 
       describe "#play_key" do
         it "plays the lowest key" do
-          synth = Synthesizer.new
+          synth = Synthesizer.new(brand: :moog)
 
           expect(synth.play_key(key: 1, duration: 1)).to eq :a
         end
 
         it "plays the next octave up" do
-          synth = Synthesizer.new
+          synth = Synthesizer.new(brand: :moog)
 
           expect(synth.play_key(key: 13, duration: 1)).to eq :a
         end
 
         it "plays the highest key" do
-          synth = Synthesizer.new
+          synth = Synthesizer.new(brand: :moog)
 
           expect(synth.play_key(key: 88, duration: 1)).to eq :c
         end

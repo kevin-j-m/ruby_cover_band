@@ -1,7 +1,7 @@
 module RubyCoverBand
   module Instruments
     class Synthesizer
-      RSpec.describe PatchMemory do
+      RSpec.describe NordPatchMemory do
         describe "#read" do
           it "access the patch stored at the location" do
             a1 = "a1"
@@ -9,7 +9,7 @@ module RubyCoverBand
             b1 = "b1"
             b2 = "b2"
 
-            memory = PatchMemory.new
+            memory = NordPatchMemory.new
 
             memory.write(location: :a1, patch: a1)
             memory.write(location: :b1, patch: b1)
@@ -30,7 +30,7 @@ module RubyCoverBand
             b1 = "b1"
             b2 = "b2"
 
-            memory = PatchMemory.new
+            memory = NordPatchMemory.new
 
             memory.write(location: :a1, patch: a1)
             memory.write(location: :b1, patch: b1)

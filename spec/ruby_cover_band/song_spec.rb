@@ -7,7 +7,7 @@ module RubyCoverBand
         guitarist = Instruments::Guitar.new(amplifier: PracticeAmplifier.new)
         singer = Instruments::Vocal.new
         drummer = Instruments::Drum.new
-        keyboardist = Instruments::Synthesizer.new
+        keyboardist = Instruments::Synthesizer.new(brand: :moog)
 
         band = Band.new
         band.guitarist = guitarist

@@ -3,15 +3,22 @@ module RubyCoverBand
     class Synthesizer
       class Patch
         attr_reader :sound
-        attr_reader :effect # flanger, chorus
-        attr_reader :filter #highpass, #lowpass
-        attr_reader :oscillator #triangle, sawtooth
+        attr_reader :effect
+        attr_reader :filter
+        attr_reader :oscillator
 
         def initialize(sound:, effect: nil, filter: nil, oscillator: nil)
           @sound = sound
           @effect = effect
           @filter = filter
           @oscillator = oscillator
+        end
+
+        def ==(other)
+          sound == other.sound &&
+            effect == other.effect &&
+            filter == other.filter &&
+            oscillator == other.oscillator
         end
       end
     end

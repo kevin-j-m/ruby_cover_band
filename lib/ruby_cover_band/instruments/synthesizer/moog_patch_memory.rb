@@ -1,7 +1,7 @@
 module RubyCoverBand
   module Instruments
     class Synthesizer
-      class PatchMemory
+      class MoogPatchMemory
         attr_reader :memory
 
         def initialize
