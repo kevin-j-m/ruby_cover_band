@@ -2,12 +2,15 @@
 
 require "coverage"
 
-Coverage.start(branches: true)
+Coverage.start(:all)
 load("lib/rehearsal.rb")
 result = Coverage.result
 
 # p result
 
-song = result.select { |k, v| k.end_with?("songs/branches_bones.rb") }.values.first[:branches]
+song_coverage = result.select { |k, v| k.end_with?("songs/branches_bones.rb") }
+p song_coverage
 
-p song
+branch_coverage_of_song = song_coverage.values.first[:branches]
+
+p branch_coverage_of_song
