@@ -6,7 +6,7 @@ module RubyCoverBand
 
     def turn_on_lights
       @powered_lights[:beam_projector] = Lighting::BeamProjector.new
-      @powered_lights[:fresnel] = Lighting::Fresnel.new
+      @powered_lights[:can] = Lighting::Can.new
       @powered_lights[:moving_light] = Lighting::MovingLight.new
       @powered_lights[:spotlight] = Lighting::Spotlight.new
     end

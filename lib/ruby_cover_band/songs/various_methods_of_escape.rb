@@ -13,7 +13,7 @@ module RubyCoverBand
       def verse
         [
           Note.new(lighting: Lighting::LightingComposition.new(light: :spotlight)),
-          Note.new(lighting: Lighting::LightingComposition.new(light: :fresnel)),
+          Note.new(lighting: Lighting::LightingComposition.new(light: :can)),
         ]
       end
 

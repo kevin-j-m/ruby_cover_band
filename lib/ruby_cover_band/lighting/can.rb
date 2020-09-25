@@ -1,6 +1,6 @@
 module RubyCoverBand
   module Lighting
-    class Fresnel
+    class Can
       def trigger(color:, effect:)
         [color, effect]
       end
