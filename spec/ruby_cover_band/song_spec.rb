@@ -42,8 +42,8 @@ module RubyCoverBand
         song.performers = band
 
         expect(song.play).to eq [
-          [[nil, :e, :g, :c, :e, nil], nil, nil, nil],
-          [[nil, :c, :f, :a, :c, nil], nil, nil, nil],
+          [[nil, :e, :g, :c, :e, nil], nil, nil, nil, nil],
+          [[nil, :c, :f, :a, :c, nil], nil, nil, nil, nil],
         ]
       end
     end

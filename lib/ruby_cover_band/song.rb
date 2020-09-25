@@ -14,6 +14,10 @@ module RubyCoverBand
       @keyboardist = band.keyboardist
     end
 
+    def lighting=(lighting)
+      @lighting = lighting
+    end
+
     def play
       @notes.map do |note|
         composition = []
@@ -22,6 +26,7 @@ module RubyCoverBand
         composition << Thread.new { @vocal&.sing(note) }
         composition << Thread.new { @drum&.hit(note) }
         composition << Thread.new { @keyboardist&.program(note) }
+        composition << Thread.new { @lighting&.trigger(note.lighting) }
 
         sleep(note.duration)
         composition.map(&:value)

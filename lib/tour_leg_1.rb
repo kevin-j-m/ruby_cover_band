@@ -30,7 +30,8 @@ band = build_band(name: "Nine Inch Nails")
 setlist = RubyCoverBand::Setlist.new(band)
 setlist.add_song(RubyCoverBand::Songs::TheLineBeginsToBlur.new)
 
-concert = RubyCoverBand::Concert.new(setlist: setlist)
+concert = RubyCoverBand::Concert.new("RubyConf 2020")
+concert.setlist = setlist
 
 10.times do
   concert.set_up

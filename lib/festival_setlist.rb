@@ -37,7 +37,8 @@ band.keyboardist = keyboardist
 setlist = RubyCoverBand::Setlist.new(band)
 setlist.add_song(RubyCoverBand::Songs::OneWayToGetThere.new)
 
-concert = RubyCoverBand::Concert.new(setlist: setlist)
+concert = RubyCoverBand::Concert.new("RubyConf 2020")
+concert.setlist = setlist
 
 concert.set_up
 concert.perform
