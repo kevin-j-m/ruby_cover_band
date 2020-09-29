@@ -26,7 +26,7 @@ module RubyCoverBand
         composition << Thread.new { @vocal&.sing(note) }
         composition << Thread.new { @drum&.hit(note) }
         composition << Thread.new { @keyboardist&.program(note) }
-        composition << Thread.new { @lighting&.trigger(note.lighting) }
+        composition << Thread.new { @lighting&.trigger(note) }
 
         sleep(note.duration)
         composition.map(&:value)

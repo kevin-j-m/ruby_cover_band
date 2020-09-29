@@ -11,7 +11,9 @@ module RubyCoverBand
       @powered_lights[:spotlight] = Lighting::Spotlight.new
     end
 
-    def trigger(lighting_composition)
+    def trigger(note)
+      lighting_composition = note.lighting
+
       @powered_lights[lighting_composition.light].trigger(
         color: lighting_composition.color,
         effect: lighting_composition.effect,
