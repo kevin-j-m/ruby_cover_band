@@ -4,7 +4,9 @@ Coverage.start(methods: true)
 load "lib/lighting_inspection.rb"
 result = Coverage.result
 
-# p result
+p result
+
+p "============"
 
 light_results = result.select { |k, _v| k.include?("/lighting/") }
 
