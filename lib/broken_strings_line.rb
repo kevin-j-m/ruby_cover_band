@@ -1,4 +1,4 @@
-# ruby lib/line_broken_strings.rb
+# ruby lib/broken_strings_line.rb
 
 require "coverage"
 
