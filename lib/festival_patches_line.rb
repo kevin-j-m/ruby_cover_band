@@ -1,4 +1,4 @@
-# ruby lib/line_festival_patches.rb
+# ruby lib/festival_patches_line.rb
 
 require "coverage"
 
@@ -17,10 +17,10 @@ moog_lines = result
 
 puts "Moog Keyboard"
 puts "============="
-puts "Patch A1 used #{moog_lines[35]} times"
-puts "Patch A2 used #{moog_lines[37]} times"
-puts "Patch B1 used #{moog_lines[39]} times"
-puts "Patch B2 used #{moog_lines[41]} times"
+puts "Patch A1 used #{moog_lines[17]} times"
+puts "Patch A2 used #{moog_lines[19]} times"
+puts "Patch B1 used #{moog_lines[21]} times"
+puts "Patch B2 used #{moog_lines[23]} times"
 
 nord_lines = result
   .select { |k, v| k.end_with?("synthesizer/nord_patch_memory.rb") }
@@ -32,7 +32,7 @@ nord_lines = result
 puts
 puts "Nord Keyboard"
 puts "============="
-puts "Patch A1 used #{nord_lines[17]} times"
-puts "Patch A2 used #{nord_lines[19]} times"
-puts "Patch B1 used #{nord_lines[21]} times"
-puts "Patch B2 used #{nord_lines[23]} times"
+puts "Patch A1 used #{nord_lines[41]} times"
+puts "Patch A2 used #{nord_lines[43]} times"
+puts "Patch B1 used #{nord_lines[45]} times"
+puts "Patch B2 used #{nord_lines[47]} times"
