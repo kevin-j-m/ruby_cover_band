@@ -8,7 +8,7 @@ Similarly, code coverage can give you confidence before your app performs on pro
 
 ## Presentation Details
 
-This talk is an explanation of the different modes ruby’s [Coverage](https://ruby-doc.org/stdlib-2.7.1/libdoc/coverage/rdoc/Coverage.html) module provides. It uses the theme of staging a concert as the through line.
+This [talk](https://kevin-j-m.github.io/coverage/) is an explanation of the different modes ruby’s [Coverage](https://ruby-doc.org/stdlib-2.7.1/libdoc/coverage/rdoc/Coverage.html) module provides. It uses the theme of staging a concert as the through line.
 
 For each mode, we examine how it works and what it tells you. We examine the coverage results of code that models performing a concert as example scenarios where that code coverage mode yields actionable insights. While code coverage is frequently talked about in regards to an application’s test suite, this talk explores how coverage can be used for instrumenting a running application in production.
 
