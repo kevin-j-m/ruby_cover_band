@@ -21,7 +21,7 @@ Each coverage mode answers a different question about the code that was run unde
 
 ## Slides
 
-The latest iteration of the slides that accompany this presentation are available [here](beat_the_band.key) in this repository. The slide deck in this repo is in macOS's Keynote format. A copy of the slides are also available on SpeakerDeck.
+The latest iteration of the slides that accompany this presentation are available [here](beat_the_band.key) in this repository. The slide deck in this repo is in macOS's Keynote format. A copy of the slides are also available on [SpeakerDeck](https://speakerdeck.com/kevinmurphy/enough-coverage-to-beat-the-band).
 
 ## Code Examples
 
