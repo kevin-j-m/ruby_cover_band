@@ -4,37 +4,16 @@ module RubyCoverBand
       def initialize
         super(
           name: "The Line Begins To Blur",
-          notes: verse_1 + chorus + verse_2 + chorus + solo + outro,
+          notes: chorus + solo,
         )
       end
 
       private
 
-      def verse_1
-        verse * 20
-      end
-
-      def verse_2
-        verse * 12
-      end
-
-      def verse
-        [
-          strum(Instruments::Guitar::Chords::DropDLowD.new),
-          strum(Instruments::Guitar::Chords::DropDLowD.new),
-          strum(Instruments::Guitar::Chords::DropDLowD.new),
-          strum(Instruments::Guitar::Chords::DropDLowD.new),
-          Note.new(guitar_line: Instruments::Guitar::FingerPlacement.new(string_number: 0, fret: nil), duration: 0.5),
-          strum(Instruments::Guitar::Chords::DropDLowD.new),
-          strum(Instruments::Guitar::Chords::DropDLowD.new),
-          strum(Instruments::Guitar::Chords::DropDLowD.new),
-        ]
-      end
-
       def chorus
         chorus_chords.each_with_object([]) do |chord, chorus|
           8.times { chorus << strum(chord) }
-        end * 4
+        end
       end
 
       def strum(chord)
@@ -51,7 +30,7 @@ module RubyCoverBand
       end
 
       def solo
-        (solo_line_1 + solo_line_2 + solo_line_1 + solo_line_4) * 3
+        solo_line_1 + solo_line_2 + solo_line_1 + solo_line_4
       end
 
       def solo_line_1

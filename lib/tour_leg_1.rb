@@ -33,7 +33,7 @@ setlist.add_song(RubyCoverBand::Songs::TheLineBeginsToBlur.new)
 concert = RubyCoverBand::Concert.new("RubyConf 2020")
 concert.setlist = setlist
 
-10.times do
+1.times do
   concert.set_up
   concert.perform
   concert.load_out
