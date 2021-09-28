@@ -15,28 +15,29 @@ module RubyCoverBand
 
         describe "#pluck" do
           it "does not attempt to play a note if no fret is provided" do
-            allow(StringPerformance).to receive(:exhausted?)
+            Mocktail.replace(StringPerformance)
 
             string = String.new(number: 1, tuning_note: :a, amplifier: PracticeAmplifier.new)
 
             string.pluck(fret: nil)
 
-            expect(StringPerformance).not_to have_received(:exhausted?)
+            verify(times: 0) { StringPerformance.exhausted? }
           end
 
           it "does not attempt to play a note if the string is broken" do
-            allow(StringPerformance).to receive(:exhausted?)
+            Mocktail.replace(StringPerformance)
 
             string = String.new(number: 1, tuning_note: :a, amplifier: PracticeAmplifier.new)
             string.instance_variable_set(:@broken, true)
 
             string.pluck(fret: 1)
 
-            expect(StringPerformance).not_to have_received(:exhausted?)
+            verify(times: 0) { StringPerformance.exhausted? }
           end
 
           it "breaks the string if plucking the string removes all tension" do
-            allow(StringPerformance).to receive(:exhausted?).and_return(false)
+            Mocktail.replace(StringPerformance)
+            stubs { StringPerformance.exhausted? }.with { false }
 
             string = String.new(number: 1, tuning_note: :a, amplifier: PracticeAmplifier.new)
             string.instance_variable_set(:@tension, -1)
@@ -45,10 +46,13 @@ module RubyCoverBand
               .to change { string.broken? }
               .from(false)
               .to(true)
+
+            verify(times: 0) { StringPerformance.exhausted? }
           end
 
           it "breaks the string if the string performance reports the string is exhausted" do
-            allow(StringPerformance).to receive(:exhausted?).and_return(true)
+            Mocktail.replace(StringPerformance)
+            stubs { StringPerformance.exhausted? }.with { true }
 
             string = String.new(number: 1, tuning_note: :a, amplifier: PracticeAmplifier.new)
 
@@ -56,10 +60,13 @@ module RubyCoverBand
               .to change { string.broken? }
               .from(false)
               .to(true)
+
+            verify(times: 1) { StringPerformance.exhausted? }
           end
 
           it "reduces the tension when playing a note" do
-            allow(StringPerformance).to receive(:exhausted?).and_return(false)
+            Mocktail.replace(StringPerformance)
+            stubs { StringPerformance.exhausted? }.with { false }
 
             string = String.new(number: 1, tuning_note: :a, amplifier: PracticeAmplifier.new)
 
@@ -70,7 +77,8 @@ module RubyCoverBand
           end
 
           it "plays the note associated with that fret position for the string" do
-            allow(StringPerformance).to receive(:exhausted?).and_return(false)
+            Mocktail.replace(StringPerformance)
+            stubs { StringPerformance.exhausted? }.with { false }
 
             string = String.new(number: 1, tuning_note: :a, amplifier: PracticeAmplifier.new)
 
