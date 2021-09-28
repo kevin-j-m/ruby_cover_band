@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "pry"
 require "ruby_cover_band"
+require "mocktail" # TODO: need to require it?
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -11,5 +12,11 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  config.include Mocktail::DSL
+
+  config.after(:each) do
+    Mocktail.reset
   end
 end
