@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description   = ""
   spec.homepage      = "https://github.com/kevin-j-m/ruby_cover_band"
   spec.license       = "MIT"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.7.0")
 
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "sonic-pi-cli"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "mocktail"
 end
