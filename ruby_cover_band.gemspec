@@ -28,5 +28,4 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "sonic-pi-cli"
   spec.add_development_dependency "pry"
-  spec.add_development_dependency "mocktail"
 end
