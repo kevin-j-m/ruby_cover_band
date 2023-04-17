@@ -1,3 +1,5 @@
+# ruby lib/lighting_inspection_method.rb
+
 require "coverage"
 
 Coverage.start(methods: true)

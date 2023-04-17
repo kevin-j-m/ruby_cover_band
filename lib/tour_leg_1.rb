@@ -1,5 +1,5 @@
 # TODO: clean these requires up so they're consistent
-require_relative "ruby_cover_band/amplifier"
+require_relative "ruby_cover_band/practice_amplifier"
 require_relative "ruby_cover_band/band"
 require_relative "ruby_cover_band/concert"
 require_relative "ruby_cover_band/instruments/guitar"
@@ -20,7 +20,7 @@ require_relative "ruby_cover_band/songs/the_line_begins_to_blur"
 
 def build_band(name: "Nine Inch Nails")
   band = RubyCoverBand::Band.new(name: name)
-  band.guitarist = RubyCoverBand::Instruments::Guitar.new(tuning: :drop_d, amplifier: RubyCoverBand::Amplifier.new)
+  band.guitarist = RubyCoverBand::Instruments::Guitar.new(tuning: :drop_d, amplifier: RubyCoverBand::PracticeAmplifier.new)
 
   band
 end
